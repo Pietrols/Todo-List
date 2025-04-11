@@ -38,6 +38,10 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        generator: {
+          // Optional: keep original folder structure in output
+          filename: "images/[name][ext][query]",
+        },
       },
     ],
   },
