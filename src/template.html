@@ -18,11 +18,11 @@
         <button id="add-project-btn">Add Project</button>
       </aside>
 
-      <main class="mian-content">
+      <main class="main-content">
         <h1 id="current-project-title">Todos</h1>
         <div id="todo-list-container">
           <ul id="todo-list"></ul>
-          <button id="add-todo-btn">Ad New Todo</button>
+          <button id="add-todo-btn">Add New Todo</button>
         </div>
       </main>
     </div>
@@ -31,10 +31,10 @@
       <div class="modal-content">
         <span class="close-button">&times;</span>
         <h2 id="todo-form-title">Add/Edit Todo</h2>
-        <form class="todo-form">
+        <form id="todo-form">
           <input type="hidden" id="todo-id-input" />
           <label for="todo-title">Title:</label>
-          <input type="text" id="todo-title" />
+          <input type="text" id="todo-title" required />
 
           <label for="todo-description">Description:</label>
           <textarea id="todo-description"></textarea>
@@ -45,7 +45,7 @@
           <label for="todo-priority">Priority:</label>
           <select id="todo-priority">
             <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
+            <option value="Medium" selected>Medium</option>
             <option value="High">High</option>
           </select>
 
