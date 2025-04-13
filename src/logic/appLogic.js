@@ -1,6 +1,8 @@
 import { loadState, saveState } from "./storage.js";
 import { Project } from "./Project.js";
 
+const DEFAULT_PROJECT_ID = "default-inbox";
+
 let projects = [];
 let currentProjectId = null;
 
@@ -36,14 +38,16 @@ function getCurrentProject() {
   return projects.find((project) => project.id === currentProjectId);
 }
 
-export { getAllProjects, getCurrentProject, initialize };
-
 function addProject(name) {
   if (!name || name.trim() === "") {
     alert("Project name cannot be empty.");
     return null;
   }
-  if (projects.some(project.name.toLowerCase() === name.trim().toLowerCase())) {
+  if (
+    projects.some(
+      (project) => project.name.toLowerCase() === name.trim().toLowerCase()
+    )
+  ) {
     alert("Project name already exists.");
     return null;
   }
@@ -58,21 +62,22 @@ function deleteProject(projectId) {
     alert("You cannot delete the last project.");
     return false;
   }
-  // Find the project to delete
-  const projectIndex = projects.findIndex(
-    (project) => project.id === projectId
-  );
-
-  if (projectIndex === -1) {
+  if (projectId === DEFAULT_PROJECT_ID) {
+    alert("You cannot delete this project.");
     return false;
   }
-
-  const isDeletingCurrentProject = currentProjectId === projectId;
-  projects.splice(projectIndex, 1);
-
-  if (isDeletingCurrentProject && projects.length > 0) {
-    currentProjectId = projects[0].id;
+  projects = projects.filter((project) => project.id !== projectId);
+  if (currentProjectId === projectId) {
+    currentProjectId = DEFAULT_PROJECT_ID;
   }
   saveState(projects);
   return true;
 }
+
+export {
+  getAllProjects,
+  getCurrentProject,
+  initialize,
+  addProject,
+  deleteProject,
+};
