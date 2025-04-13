@@ -74,10 +74,84 @@ function deleteProject(projectId) {
   return true;
 }
 
+function addTodoToCurrentProject(todoData) {
+  const currentProject = getCurrentProject();
+  if (!currentProject) {
+    console.error("Cannot add todo: No current project selected.");
+    return false;
+  }
+  if (!todoData || !todoData.title || !todoData.dueDate || !todoData.priority) {
+    alert("Todo requires at least a title, due date and priority.");
+    return false;
+  }
+  const newTodo = new Todo(
+    todoData.title,
+    todoData.description || "",
+    todoData.dueDate,
+    todoData.priority,
+    todoData.notes || ""
+  );
+  currentProject.addTodo(newTodo);
+  saveState(projects);
+  return true;
+}
+
+function deleteTodo(todoId) {
+  const currentProject = getCurrentProject();
+  if (!currentProject) {
+    return false;
+  }
+  currentProject.removeTodo(todoId);
+  saveState(projects);
+  return true;
+}
+
+function updateTodo(todoId, updatedData) {
+  const currentProject = getCurrentProject();
+  if (!currentProject) {
+    console.error("Cannot update todo: No current project selected.");
+    return false;
+  }
+  const todoToUpdate = currentProject.getTodoById(todoId);
+  if (!todoToUpdate) {
+    console.error(
+      `Cannot update todo: Todo with ID ${todoId} not found in project ${currentProject.name}.`
+    );
+    return false;
+  }
+  todoToUpdate.updateDetails(updatedData);
+  saveState(projects);
+  return true;
+}
+
+function toggleTodoComplete(todoId) {
+  const currentProject = getCurrentProject();
+  if (!currentProject) {
+    console.error("Cannot toggle todo: No current project selected.");
+    return false;
+  }
+  const todoToToggle = currentProject.getTodoById(todoId);
+
+  if (todoToToggle) {
+    todoToToggle.toggleComplete();
+    saveState(projects);
+    return true;
+  } else {
+    console.error(
+      `Cannot toggle todo: Todo with ID ${todoId} not found in project ${currentProject.name}.`
+    );
+    return false; // Return false for failure
+  }
+}
+
 export {
   getAllProjects,
   getCurrentProject,
   initialize,
   addProject,
   deleteProject,
+  addTodoToCurrentProject,
+  deleteTodo,
+  updateTodo,
+  toggleTodoComplete,
 };
