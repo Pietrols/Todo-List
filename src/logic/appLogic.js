@@ -38,6 +38,21 @@ function getCurrentProject() {
   return projects.find((project) => project.id === currentProjectId);
 }
 
+function setCurrentProject(projectId) {
+  const projectExists = projects.some((project) => project.id === projectId);
+  if (projectExists) {
+    currentProjectId = projectId;
+    console.log("Current project set to:", currentProjectId);
+    return true;
+  } else {
+    console.error(
+      "Attempted to set current project to non-existent ID:",
+      projectId
+    );
+    return false;
+  }
+}
+
 function addProject(name) {
   if (!name || name.trim() === "") {
     alert("Project name cannot be empty.");
@@ -154,4 +169,5 @@ export {
   deleteTodo,
   updateTodo,
   toggleTodoComplete,
+  setCurrentProject,
 };
