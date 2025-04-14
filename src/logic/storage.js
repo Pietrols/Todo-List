@@ -20,9 +20,19 @@ function loadState() {
   if (savedDataString == null) return [];
   else
     try {
-      return JSON.parse(savedDataString);
+      const parsedData = JSON.parse(savedDataString);
+      if (Array.isArray(parsedData)) {
+        return parsedData;
+      } else {
+        console.warn(
+          "Loaded data is not an array. Clearing storage and returning default."
+        );
+        localStorage.removeItem(storageKey);
+        return [];
+      }
     } catch (err) {
       console.error("Error loading state:", err);
+      localStorage.removeItem(storageKey);
       return [];
     }
 }

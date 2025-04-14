@@ -18,7 +18,7 @@ export function setupEventListeners() {
     }
   });
 
-  elements.newProjectNameInput.addEventListener("keypress", (event) => {
+  elements.newProjectName.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       elements.addProjectBtn.click();
     }

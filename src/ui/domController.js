@@ -22,4 +22,27 @@ function initializeUI() {
   elements.closeButton = document.querySelector(".close-button");
 }
 
-export { elements, initializeUI };
+function showTodoModal(todo = null) {
+  elements.todoForm.reset();
+  if (todo) {
+    elements.todoFormTitle.textContent = "Edit Todo";
+    elements.todoIdInput.value = todo.id;
+    elements.todoTitle.value = todo.title || "";
+    elements.todoDescription.value = todo.description || "";
+    elements.todoNotes.value = todo.notes || "";
+    elements.todoPriority.value = todo.priority;
+    elements.todoDueDate.value = todo.dueDate;
+  } else {
+    elements.todoFormTitle.textContent = "Add New Todo";
+    elements.todoIdInput.value = "";
+  }
+  elements.todoFormModal.style.display = "block";
+}
+
+function hideTodoModal() {
+  elements.todoFormModal.style.display = "none";
+  elements.todoForm.reset();
+  elements.todoIdInput.value = "";
+}
+
+export { elements, initializeUI, showTodoModal, hideTodoModal };
