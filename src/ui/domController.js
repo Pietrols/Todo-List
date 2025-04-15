@@ -43,6 +43,7 @@ function hideTodoModal() {
   elements.todoFormModal.style.display = "none";
   elements.todoForm.reset();
   elements.todoIdInput.value = "";
+  elements.todoNotes.value = "";
 }
 
 export { elements, initializeUI, showTodoModal, hideTodoModal };

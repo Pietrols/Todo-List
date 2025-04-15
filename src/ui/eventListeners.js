@@ -1,15 +1,15 @@
-import { elements } from "./domController.js";
+import { elements, showTodoModal, hideTodoModal } from "./domController.js";
 import * as appLogic from "../logic/appLogic.js";
 import { renderProjectList } from "./projectRenderer.js";
 import { renderTodoList } from "./todoRenderer.js";
 
 export function setupEventListeners() {
   elements.addProjectBtn.addEventListener("click", () => {
-    const trimmedName = elements.newProjectNameInput.value.trim();
+    const trimmedName = elements.newProjectName.value.trim();
     if (trimmedName) {
-      const newProject = appLogic.addProject(trimmedNamename);
+      const newProject = appLogic.addProject(trimmedName);
       if (newProject) {
-        elements.newProjectNameInput.value = "";
+        elements.newProjectName.value = "";
         renderProjectList(
           appLogic.getAllProjects(),
           appLogic.getCurrentProject()?.id
@@ -45,13 +45,13 @@ export function setupEventListeners() {
   });
 
   elements.addTodoBtn.addEventListener("click", () => {
-    domController.showTodoModal(null);
+    showTodoModal(null);
   });
   elements.closeButton.addEventListener("click", () => {
-    domController.hideTodoModal();
+    hideTodoModal();
   });
   elements.todoFormModal.addEventListener("click", (event) => {
-    if (event.target === elements.todoFormModal) domController.hideTodoModal();
+    if (event.target === elements.todoFormModal) hideTodoModal();
   });
   elements.todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -71,7 +71,7 @@ export function setupEventListeners() {
       success = appLogic.addTodoToCurrentProject(todoData);
     }
     if (success) {
-      domController.hideTodoModal();
+      hideTodoModal();
       renderTodoList(appLogic.getCurrentProject());
     } else {
       alert("Failed to save todo.");
@@ -90,7 +90,7 @@ export function setupEventListeners() {
     }
     if (event.target.classList.contains("edit-todo-btn")) {
       const todo = appLogic.getCurrentProject()?.getTodoById(todoId);
-      if (todo) domController.showTodoModal(todo);
+      if (todo) showTodoModal(todo);
     }
     if (event.target.classList.contains("delete-todo-btn")) {
       if (confirm("Are you sure you want to delete this todo?")) {

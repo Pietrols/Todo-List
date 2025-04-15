@@ -7,6 +7,7 @@ function renderTodoList(project) {
     elements.todoList.innerHTML = "";
     return;
   }
+  elements.todoList.innerHTML = "";
   elements.currentProjectTitle.textContent = project.name;
   if (project === null || project.todos.length === 0) {
     elements.todoList.textContent = "Project is empty.";

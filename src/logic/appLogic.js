@@ -1,5 +1,6 @@
 import { loadState, saveState } from "./storage.js";
 import { Project } from "./Project.js";
+import Todo from "./Todo.js";
 
 const DEFAULT_PROJECT_ID = "default-inbox";
 

@@ -1,3 +1,11 @@
+:root {
+  --sidebar-background: #e3ddd3;
+  --button-color: #36574e;
+  --main-background: #f7f5f3;
+  --shadow-color: #e3ddd3;
+  --todo-background: #c0d5ca;
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.6;
@@ -40,7 +48,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  word-break: break-all; /* Prevent long names overflowing */
+  word-break: break-all;
 }
 
 #project-list li:hover {
@@ -48,7 +56,7 @@ body {
 }
 
 #project-list li.active {
-  background-color: #4caf50;
+  background-color: grey;
   color: white;
   font-weight: bold;
 }
@@ -68,7 +76,7 @@ body {
 }
 
 #new-project-name {
-  width: calc(100% - 22px); /* Account for padding/border */
+  width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -78,7 +86,7 @@ body {
 #add-project-btn {
   width: 100%;
   padding: 10px;
-  background-color: #555;
+  background-color: var(--button-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -86,7 +94,7 @@ body {
 }
 
 #add-project-btn:hover {
-  background-color: #333;
+  background-color: #42695f;
 }
 
 .main-content {
@@ -119,7 +127,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allow wrapping on small screens */
+  flex-wrap: wrap;
 }
 
 #todo-list li.completed .todo-summary span {
@@ -130,8 +138,8 @@ body {
 .todo-summary {
   display: flex;
   align-items: center;
-  flex-grow: 1; /* Take available space */
-  margin-right: 10px; /* Space before controls */
+  flex-grow: 1;
+  margin-right: 10px;
 }
 
 .todo-summary input[type="checkbox"] {
@@ -139,7 +147,7 @@ body {
 }
 
 .todo-summary span {
-  cursor: pointer; /* Indicate it's clickable for details */
+  cursor: pointer;
   margin-right: 15px;
 }
 
@@ -147,7 +155,7 @@ body {
   font-size: 0.9em;
   color: #666;
   margin-right: 15px;
-  white-space: nowrap; /* Prevent date wrapping */
+  white-space: nowrap;
 }
 
 .todo-priority {
@@ -162,15 +170,15 @@ body {
 .priority-Low {
   background-color: #b3e5fc;
   color: #01579b;
-} /* Light Blue */
+}
 .priority-Medium {
   background-color: #fff9c4;
   color: #f57f17;
-} /* Light Yellow */
+}
 .priority-High {
   background-color: #ffcdd2;
   color: #b71c1c;
-} /* Light Red */
+}
 
 .todo-controls button {
   background: none;
@@ -180,12 +188,7 @@ body {
   padding: 5px;
   margin-left: 5px;
 }
-.todo-controls .edit-todo-btn {
-  color: #0277bd;
-} /* Blue */
-.todo-controls .delete-todo-btn {
-  color: #f44336;
-} /* Red */
+
 .todo-controls button:hover {
   opacity: 0.7;
 }
@@ -193,7 +196,7 @@ body {
 #add-todo-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: var(--button-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -201,29 +204,28 @@ body {
   font-size: 1em;
 }
 #add-todo-btn:hover {
-  background-color: #45a049;
+  background-color: #42695f;
 }
 
-/* Modal Styles */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 10% auto; /* 10% from the top and centered */
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  max-width: 500px; /* Maximum width */
+  width: 80%;
+  max-width: 500px;
   border-radius: 5px;
   position: relative;
 }
@@ -255,7 +257,7 @@ body {
 #todo-form input[type="date"],
 #todo-form select,
 #todo-form textarea {
-  width: calc(100% - 22px); /* Adjust for padding */
+  width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -268,7 +270,7 @@ body {
 }
 
 #todo-form button[type="submit"] {
-  background-color: #4caf50;
+  background-color: var(--button-color);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -278,5 +280,5 @@ body {
 }
 
 #todo-form button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #42695f;
 }
